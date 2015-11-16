@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/result_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textColor="#1a4067"
+        />
+
+  <Button
+      android:id="@+id/start_listen_btn"
+      android:layout_width="150dp"
+      android:layout_height="80dp"
+      android:text="@string/start_listening"
+      android:layout_centerInParent="true"
+      android:textStyle="italic"
+      android:textColor="#1a4067"
+      />
+
+    <Button
+        android:id="@+id/stop_listen_btn"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/start_listen_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/stop_listening"
+        android:textStyle="italic"
+        android:textColor="#1a4067"
+        />
+
+
+    <Button
+        android:id="@+id/mute"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:text="@string/mute"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="italic"
+        android:textColor="#1a4067"
+        />
+
+
+
+</RelativeLayout>
