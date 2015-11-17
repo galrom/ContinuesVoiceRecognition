@@ -89,10 +89,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         mSpeechManager.destroy();
                         SetSpeechListener();
                     }
+                    result_tv.setText(getString(R.string.you_may_speak));
 
                     break;
                 case R.id.stop_listen_btn:
                     if(mSpeechManager!=null) {
+                        result_tv.setText(getString(R.string.destroied));
                         mSpeechManager.destroy();
                         mSpeechManager = null;
                     }
@@ -139,18 +141,28 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mSpeechManager=new SpeechRecognizerManager(this, new SpeechRecognizerManager.onResultsReady() {
             @Override
             public void onResults(ArrayList<String> results) {
+
+
+
                 if(results!=null && results.size()>0)
                 {
-                    StringBuilder sb=new StringBuilder();
-                    if(results.size()>5)
+
+                    if(results.size()==1)
                     {
-                        results=(ArrayList<String>)results.subList(0,5);
+                        mSpeechManager.destroy();
+                        mSpeechManager = null;
+                        result_tv.setText(results.get(0));
                     }
-                    for(String result:results)
-                    {
-                        sb.append(result).append("\n");
+                    else {
+                        StringBuilder sb = new StringBuilder();
+                        if (results.size() > 5) {
+                            results = (ArrayList<String>) results.subList(0, 5);
+                        }
+                        for (String result : results) {
+                            sb.append(result).append("\n");
+                        }
+                        result_tv.setText(sb.toString());
                     }
-                    result_tv.setText(sb.toString());
                 }
                 else
                     result_tv.setText(getString(R.string.no_results_found));

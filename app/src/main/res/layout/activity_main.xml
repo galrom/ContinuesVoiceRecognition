@@ -43,7 +43,7 @@
         android:id="@+id/mute"
         android:layout_width="75dp"
         android:layout_height="40dp"
-        android:text="@string/mute"
+        android:text="@string/un_mute"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"

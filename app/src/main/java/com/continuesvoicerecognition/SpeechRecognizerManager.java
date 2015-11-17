@@ -26,7 +26,7 @@ public class SpeechRecognizerManager {
     private boolean mIsStreamSolo;
 
 
-    private boolean mMute;
+    private boolean mMute=true;
 
 
 
@@ -101,7 +101,10 @@ public class SpeechRecognizerManager {
         Log.d(TAG, "onDestroy");
         if (mSpeechRecognizer != null)
         {
+            mSpeechRecognizer.stopListening();
+            mSpeechRecognizer.cancel();
             mSpeechRecognizer.destroy();
+            mSpeechRecognizer=null;
         }
 
     }
@@ -123,12 +126,32 @@ public class SpeechRecognizerManager {
         {}
 
         @Override
-        public void onError(int error)
+        public synchronized void onError(int error)
         {
+
+            if(error==SpeechRecognizer.ERROR_RECOGNIZER_BUSY)
+            {
+                if(mListener!=null) {
+                    ArrayList<String> errorList=new ArrayList<String>(1);
+                    errorList.add("ERROR RECOGNIZER BUSY");
+                    if(mListener!=null)
+                            mListener.onResults(errorList);
+                }
+                return;
+            }
+
             if(error==SpeechRecognizer.ERROR_NO_MATCH)
             {
                 if(mListener!=null)
                     mListener.onResults(null);
+            }
+
+            if(error==SpeechRecognizer.ERROR_NETWORK)
+            {
+                ArrayList<String> errorList=new ArrayList<String>(1);
+                errorList.add("STOPPED LISTENING");
+                if(mListener!=null)
+                    mListener.onResults(errorList);
             }
             Log.d(TAG, "error = " + error);
             new Handler().postDelayed(new Runnable() {

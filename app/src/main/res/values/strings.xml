@@ -7,4 +7,6 @@
     <string name="no_results_found">No Matching Results</string>
     <string name="mute">Mute</string>
     <string name="un_mute">unMute</string>
+    <string name="destroied">SpeeechRecognizer has been destroyed</string>
+    <string name="you_may_speak">You may speak now</string>
 </resources>
